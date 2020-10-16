@@ -1,0 +1,24 @@
+<h1 class="mb-5">User registration</h1>
+
+<form name="userForm" #userForm="ngForm">
+
+  <!--Name User section-->
+  <div class="form-group">
+    <label for="user-name-ctrl">Name</label>
+    <input name="userName" id="user-name-ctrl" type="text" class="form-control" [(ngModel)]="userName" required maxlength="100">
+    <small class="form-text text-muted">Type your name</small>
+  </div>
+
+  <!--Level section-->
+  <div class="form-group">
+    <label for="level-ctrl">Level</label>
+    <select name="level-ctrl" id="level-ctrl" class="form-control form-control-lg" [(ngModel)]="level" required>
+      <option *ngFor="let row of levelsObservable |async" [value]="row">
+        {{row}}
+      </option>
+    </select>
+  </div>
+
+  <button class="btn btn-primary btn-lg btn-block" (click)="clickOnStartButton()" [disabled]="userForm.form.invalid" ><Small>Start</Small></button>
+  <a routerLink="/app-score-board">Score board</a>
+</form>

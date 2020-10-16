@@ -1,0 +1,46 @@
+version: '3.2'
+services:
+  trivia-db:
+    image: mariadb:10.5.5-focal
+    networks:
+      - trivia
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: trivia
+      MYSQL_DATABASE: trivia
+
+  adminer:
+    image: adminer
+    networks:
+      - trivia
+    restart: always
+    ports:
+      - 8081:8080
+
+  web-client:
+    image: javierdavidsantos/trivia-game/web-client
+    container_name: web-client
+    hostname: web-client
+    ports:
+        - 80:80
+    networks:
+      - trivia
+
+  core-service:
+    image: javierdavidsantos/trivia-game/core-service
+    container_name: core-service
+    hostname: core-service
+    ports:
+        - 8082:8080
+    networks:
+      - trivia
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+
+networks:
+  trivia:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.34.0.0/25

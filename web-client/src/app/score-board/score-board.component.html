@@ -1,0 +1,24 @@
+<h1 class="mb-5">The Score Board</h1>
+
+<div class="table-responsive-sm shadow-sm  bg-white rounded">
+  <table  class="table">
+    <caption>Best scores list</caption>
+    <thead class="thead-light">
+      <tr>
+        <th style="width: 70%">Name</th>
+        <th style="width: 10%">Score</th>
+        <th style="width: 10%">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of scoreObservable | async">
+        <th>{{row.name}}</th>
+        <th>{{row.score}}</th>
+        <th>{{row.time}}</th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<button type="button" class="mt-5 btn btn-primary btn-lg btn-block" [routerLink]="['/']">Back</button>
+

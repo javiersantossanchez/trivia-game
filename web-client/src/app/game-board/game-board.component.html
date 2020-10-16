@@ -1,0 +1,24 @@
+<p>Question</p>
+<ng-container *ngIf="questionObservable |async; let squareStatus;   else finish">
+  <div class="card" >
+      <div class="card-header">
+        {{squareStatus.question}}
+      </div>
+      <ul class="list-group list-group-flush" *ngFor="let currentOption of squareStatus.options">
+        <li class="list-group-item">
+          <input type="radio" [name]="currentOption" [id]="currentOption"  [value]="currentOption" [(ngModel)]="selectedOption">
+          <label class="ml-2" [for]="currentOption">{{currentOption}}</label>
+        </li>
+      </ul>
+  </div>
+  <button class="mt-4 btn btn-primary btn-lg btn-block" (click)="sendAnswer()"><Small>Submit answer</Small></button>
+</ng-container>
+
+
+
+<ng-template #finish>
+  <p>{{score}}</p>
+  <button (click)="clickOnFinishButton()">Finish</button>
+
+</ng-template>
+
