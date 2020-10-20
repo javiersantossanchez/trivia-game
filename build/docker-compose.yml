@@ -1,22 +1,5 @@
 version: '3.2'
 services:
-  trivia-db:
-    image: mariadb:10.5.5-focal
-    networks:
-      - trivia
-    ports:
-      - 3306:3306
-    environment:
-      MYSQL_ROOT_PASSWORD: trivia
-      MYSQL_DATABASE: trivia
-
-  adminer:
-    image: adminer
-    networks:
-      - trivia
-    restart: always
-    ports:
-      - 8081:8080
 
   web-client:
     image: javierdavidsantos/trivia-game/web-client
